@@ -1,3 +1,4 @@
+const { type } = require("os");
 const path = require("path");
 
 module.exports = {
@@ -12,7 +13,16 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpg)$/,
-        type: "asset/resource",
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 3 * 1024, //change number from 8(default) to 3
+          },
+        },
+      },
+      {
+        test: /\.txt$/,
+        type: "asset/source",
       },
     ],
   },
