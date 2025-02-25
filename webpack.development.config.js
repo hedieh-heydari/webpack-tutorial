@@ -3,10 +3,11 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: {
-    "hello-world": "./src/hello-world.js",
-    "image-component": "./src/images.js",
-  },
+  // entry: {
+  //   "hello-world": "./src/hello-world.js",
+  //   "image-component": "./src/images.js",
+  // },
+  entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
@@ -75,22 +76,22 @@ module.exports = {
         path.join(process.cwd(), "build/**/*"),
       ],
     }),
-
-    new HtmlWebpackPlugin({
-      filename: "hello-world.html",
-      chunks: ["hello-world"],
-      title: "hello world!",
-      template: "src/page-template.hbs",
-      description: "hello world",
-      minify: false,
-    }),
-    new HtmlWebpackPlugin({
-      filename: "image-component.html",
-      chunks: ["image-component"],
-      title: "image component!",
-      template: "src/page-template.hbs",
-      description: "image component",
-      minify: false,
-    }),
+    new HtmlWebpackPlugin(),
+    // new HtmlWebpackPlugin({
+    //   filename: "hello-world.html",
+    //   chunks: ["hello-world"],
+    //   title: "hello world!",
+    //   template: "src/page-template.hbs",
+    //   description: "hello world",
+    //   minify: false,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: "image-component.html",
+    //   chunks: ["image-component"],
+    //   title: "image component!",
+    //   template: "src/page-template.hbs",
+    //   description: "image component",
+    //   minify: false,
+    // }),
   ],
 };
