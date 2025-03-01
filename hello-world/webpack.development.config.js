@@ -3,10 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: {
-    "hello-world": "./src/hello-world.js",
-    "image-component": "./src/images.js",
-  },
+  entry: "./src/hello-world.js",
   entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
@@ -19,34 +16,17 @@ module.exports = {
   },
   mode: "development",
   devServer: {
-    port: 9000,
+    port: 9001,
     static: {
       directory: path.resolve(__dirname, "./dist"),
     },
     devMiddleware: {
-      index: "index.html",
+      index: "hello-world.html",
       writeToDisk: true,
     },
   },
   module: {
     rules: [
-      {
-        test: /\.(png|jpg)$/,
-        type: "asset",
-        parser: {
-          dataUrlCondition: {
-            maxSize: 3 * 1024, //change number from 8(default) to 3
-          },
-        },
-      },
-      {
-        test: /\.txt$/,
-        type: "asset/source",
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
@@ -79,18 +59,9 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       filename: "hello-world.html",
-      chunks: ["hello-world"],
       title: "hello world!",
       template: "src/page-template.hbs",
       description: "hello world",
-      minify: false,
-    }),
-    new HtmlWebpackPlugin({
-      filename: "image-component.html",
-      chunks: ["image-component"],
-      title: "image component!",
-      template: "src/page-template.hbs",
-      description: "image component",
       minify: false,
     }),
   ],
