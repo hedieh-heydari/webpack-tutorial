@@ -2,13 +2,14 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/images.js",
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "/static/",
+    publicPath: "http://localhost:9002/",
   },
   mode: "production",
   optimization: {
@@ -69,6 +70,12 @@ module.exports = {
       template: "src/page-template.hbs",
       description: "image component",
       minify: false,
+    }),
+    new ModuleFederationPlugin({
+      name: "imageComponentApp",
+      remotes: {
+        HelloWorldApp: "helloWorldApp@http://localhost:9001/remoteEntry.js",
+      },
     }),
   ],
 };

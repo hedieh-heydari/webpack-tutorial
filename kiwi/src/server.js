@@ -12,7 +12,7 @@ app.get("/", function (req, res) {
   res.send(contentFormatFile);
 });
 
-app.use("/static", express.static(path.resolve(__dirname, "../dist")));
+app.use("/", express.static(path.resolve(__dirname, "../dist")));
 
 app.listen(9002, function () {
   console.log("application is running on http://localhost:9002");

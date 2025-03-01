@@ -1,14 +1,14 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/images.js",
-  entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "/static/",
+    publicPath: "http://localhost:9002/",
   },
   mode: "development",
   devServer: {
@@ -70,6 +70,12 @@ module.exports = {
       template: "src/page-template.hbs",
       description: "image component",
       minify: false,
+    }),
+    new ModuleFederationPlugin({
+      name: "imageComponentApp",
+      remotes: {
+        HelloWorldApp: "helloWorldApp@http://localhost:9001/remoteEntry.js",
+      },
     }),
   ],
 };

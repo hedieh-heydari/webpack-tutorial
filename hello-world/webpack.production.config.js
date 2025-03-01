@@ -2,17 +2,14 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/hello-world.js",
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "/static/",
-    // clean: {
-    //   dry: true,
-    //   keep: /\.css/,
-    // },
+    publicPath: "http://localhost:9001/",
   },
   mode: "production",
   optimization: {
@@ -61,6 +58,14 @@ module.exports = {
       template: "src/page-template.hbs",
       description: "hello world",
       minify: false,
+    }),
+    new ModuleFederationPlugin({
+      name: "helloWorldApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./helloWorldButton":
+          "./src/components/hello-world-button/hello-world-button.js",
+      },
     }),
   ],
 };
