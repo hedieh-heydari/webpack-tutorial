@@ -6,9 +6,3 @@ const image = new Image();
 
 heading.render("image component");
 image.render();
-
-import("HelloWorldApp/HelloWorldButton").then((HelloworldButtonModule) => {
-  const HelloWorldButton = HelloworldButtonModule.default;
-  const helloWorldButton = new HelloWorldButton();
-  helloWorldButton.render();
-});
