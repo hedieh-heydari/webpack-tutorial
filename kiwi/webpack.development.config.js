@@ -70,11 +70,11 @@ module.exports = {
       template: "src/page-template.hbs",
       description: "image component",
     }),
-    // new ModuleFederationPlugin({
-    //   name: "imageComponentApp",
-    //   remotes: {
-    //     HelloWorldApp: "helloWorldApp@http://localhost:9001/remoteEntry.js",
-    //   },
-    // }),
+    new ModuleFederationPlugin({
+      name: "ImageComponentApp",
+      remotes: {
+        HelloWorldApp: "HelloWorldApp@http://localhost:9001/remoteEntry.js",
+      },
+    }),
   ],
 };

@@ -76,13 +76,13 @@ module.exports = {
       template: "src/page-template.hbs",
       description: "hello world",
     }),
-    // new ModuleFederationPlugin({
-    //   name: "helloWorldApp",
-    //   filename: "remoteEntry.js",
-    //   exposes: {
-    //     "./helloWorldButton":
-    //       "./src/components/hello-world-button/hello-world-button.js",
-    //   },
-    // }),
+    new ModuleFederationPlugin({
+      name: "HelloWorldApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./HelloWorldButton":
+          "./src/components/hello-world-button/hello-world-button.js",
+      },
+    }),
   ],
 };
