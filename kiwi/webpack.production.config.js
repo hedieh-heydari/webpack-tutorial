@@ -71,11 +71,11 @@ module.exports = {
       description: "image component",
       minify: false,
     }),
-    new ModuleFederationPlugin({
-      name: "imageComponentApp",
-      remotes: {
-        HelloWorldApp: "helloWorldApp@http://localhost:9001/remoteEntry.js",
-      },
-    }),
+    // new ModuleFederationPlugin({
+    //   name: "imageComponentApp",
+    //   remotes: {
+    //     HelloWorldApp: "helloWorldApp@http://localhost:9001/remoteEntry.js",
+    //   },
+    // }),
   ],
 };

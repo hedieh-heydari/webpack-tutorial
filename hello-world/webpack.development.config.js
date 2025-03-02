@@ -5,7 +5,6 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/hello-world.js",
-  entry: "./src/index.js",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
@@ -24,6 +23,23 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpg)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 3 * 1024, //change number from 8(default) to 3
+          },
+        },
+      },
+      {
+        test: /\.txt$/,
+        type: "asset/source",
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
@@ -59,15 +75,14 @@ module.exports = {
       title: "hello world!",
       template: "src/page-template.hbs",
       description: "hello world",
-      minify: false,
     }),
-    new ModuleFederationPlugin({
-      name: "helloWorldApp",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./helloWorldButton":
-          "./src/components/hello-world-button/hello-world-button.js",
-      },
-    }),
+    // new ModuleFederationPlugin({
+    //   name: "helloWorldApp",
+    //   filename: "remoteEntry.js",
+    //   exposes: {
+    //     "./helloWorldButton":
+    //       "./src/components/hello-world-button/hello-world-button.js",
+    //   },
+    // }),
   ],
 };
