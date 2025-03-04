@@ -8,6 +8,12 @@ class KiwiPage {
 
     heading.render("image component");
     image.render();
+
+    import("ImageCaptionApp/ImageCaption").then((ImageCaptionModule) => {
+      const ImageCaption = ImageCaptionModule.default;
+      const imageCaption = new ImageCaption();
+      imageCaption.render("testing image caption in kiwi app");
+    });
   }
 }
 

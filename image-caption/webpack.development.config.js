@@ -72,7 +72,7 @@ module.exports = {
       description: "image caption",
     }),
     new ModuleFederationPlugin({
-      name: "ImageCaprtionApp",
+      name: "ImageCaptionApp",
       filename: "remoteEntry.js",
       exposes: {
         "./ImageCaption": "./src/components/image-caption/image-caption.js",

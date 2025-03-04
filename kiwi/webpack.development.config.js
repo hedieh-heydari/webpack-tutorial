@@ -1,6 +1,9 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {
+  default: ImageCaption,
+} = require("../image-caption/src/components/image-caption/image-caption");
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
@@ -78,6 +81,9 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./KiwiPage": "./src/components/kiwi-page/kiwi-page.js",
+      },
+      remotes: {
+        ImageCaptionApp: "ImageCaptionApp@http://localhost:9003/remoteEntry.js",
       },
     }),
   ],

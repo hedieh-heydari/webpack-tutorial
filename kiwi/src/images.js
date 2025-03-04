@@ -1,8 +1,4 @@
-import Heading from "./components/heading/heading.js";
-import Image from "./components/imageComponent/imageComponent.js";
+import KiwiPage from "./components/kiwi-page/kiwi-page.js";
 
-const heading = new Heading();
-const image = new Image();
-
-heading.render("image component");
-image.render();
+const kiwiPage = new KiwiPage();
+kiwiPage.render();
